@@ -12,7 +12,7 @@ Pokedex.RootView.prototype.createPokemon = function (attrs, callback) {
 };
 
 Pokedex.RootView.prototype.submitPokemonForm = function (event) {
-  // prevent default
+  event.preventDefault();
   var newPokemon = $(event.currentTarget).serializeJSON();
   this.createPokemon(newPokemon, this.renderPokemonDetail.bind(this));
 };
