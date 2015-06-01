@@ -6,4 +6,4 @@
 #   "name":"Pinsir",
 #   "poke_type":"bug" }
 
-json.extract! pokemon, :id, :attack, :defense
+json.extract! pokemon, :id, :attack, :defense, :image_url, :moves, :name, :poke_type
