@@ -114,3 +114,8 @@ body {
   max-width: 300px;
   max-height: 200px;
 }
+
+.toy-detail {
+  display: block;
+  float: right;
+}
