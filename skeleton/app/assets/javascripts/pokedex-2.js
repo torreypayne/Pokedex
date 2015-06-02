@@ -8,8 +8,24 @@ Pokedex.RootView.prototype.addToyToList = function (toy) {
 };
 
 Pokedex.RootView.prototype.renderToyDetail = function (toy) {
-  var $toyDetail = $('div').addClass('toy-detail');
-  this.$toyDetail.html($toyDetail);
+  var $what = $('<div>').addClass('detail');
+  this.$toyDetail.append($what);
+
+  var $select = $('<select>').data('pokemon-id', toy.get('pokemon_id'));
+  $select.data('toy-id', toy.get('id'));
+
+  this.pokes.each(function (pokemon) {
+    var $option = $('<option>').data('pokemon-id', pokemon.get('id'));
+    $option.data('toy-id', toy.get('id'));
+    $option.attr('value', pokemon.get('id'));
+    $option.text(pokemon.get('name'));
+    if (pokemon.get('id') === toy.get('pokemon_id')) {
+      $option.prop('selected', true);
+    }
+    $select.append($option);
+  });
+
+  this.$toyDetail.append($select);
 };
 
 Pokedex.RootView.prototype.selectToyFromList = function (event) {
@@ -20,4 +36,5 @@ Pokedex.RootView.prototype.selectToyFromList = function (event) {
 
   this.$toyDetail.html( $('<div>').addClass('detail').append(toy.get('name')) );
   this.$toyDetail.append($('<img>').attr('src', toy.get('image_url')));
+  this.renderToyDetail(toy);
 };

@@ -21,7 +21,9 @@ Pokedex.Models.Pokemon = Backbone.Model.extend({
   }
 }); // WRITE ME
 
-Pokedex.Models.Toy = Backbone.Model.extend({}); // WRITE ME IN PHASE 2
+Pokedex.Models.Toy = Backbone.Model.extend({
+  urlRoot: '/toys'
+}); // WRITE ME IN PHASE 2
 
 Pokedex.Collections.Pokemon = Backbone.Collection.extend({
   url: Pokedex.Models.Pokemon.prototype.urlRoot,
@@ -64,6 +66,7 @@ window.Pokedex.RootView = function ($el) {
   // Click handlers go here.
   this.$pokeList.on("click", "li", this.selectPokemonFromList.bind(this));
   this.$newPoke.on("submit", this.submitPokemonForm.bind(this));
+  this.$toyDetail.change(this.reassignToy.bind(this));
 };
 
 $(function() {
